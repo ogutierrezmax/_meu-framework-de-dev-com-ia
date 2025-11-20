@@ -1,0 +1,10 @@
+---
+globs: .husky/pre-commit
+alwaysApply: false
+---
+
+## Obrigatório conter
+
+```
+npx lint-staged
+```
