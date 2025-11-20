@@ -1,0 +1,378 @@
+---
+description: Regras para criação e gerenciamento de planejamentos de desenvolvimento
+globs: .plan/**/*.md
+alwaysApply: false
+---
+
+# Regras de Planejamento
+
+## Propósito
+
+Define o processo padrão para criar e gerenciar planejamentos de desenvolvimento, garantindo que todas as features sigam desenvolvimento incremental por etapas testáveis e bem definidas.
+
+---
+
+## 1. Estrutura de Diretórios e Arquivos
+
+### 1.1. Criação do Plano
+
+**Antes de iniciar qualquer planejamento:**
+
+1. Criar pasta do plano em `.plan/backlog/` usando o formato:
+
+   ```
+   .plan/backlog/YY-MM-DD-<Nome-Do-Plano>/
+   ```
+
+2. Criar arquivo `index.md` na pasta do plano com estrutura básica
+
+**Formato de nome da pasta:**
+
+- Prefixo de data: `YY-MM-DD` (ex: `25-12-19`)
+- Nome do plano: kebab-case, descritivo (ex: `hero-search-feature`)
+- Exemplo completo: `25-12-19-hero-search-feature`
+
+### 1.2. Estrutura de Arquivos de Etapa
+
+**Cada etapa deve ser um arquivo separado com formato:**
+
+```
+<numeroDaEtapa>-<nomeDaEtapa>.md
+```
+
+**Exemplos válidos:**
+
+- `01-configuracao-base.md`
+- `02-fixtures-helpers.md`
+
+**Regras:**
+
+- Numeração com 2 dígitos (01, 02, 03...)
+- Nome em kebab-case
+- Ordenação sequencial sem saltos
+
+---
+
+## 2. Processo de Planejamento
+
+### 2.1. Pré-requisitos
+
+**Antes de criar o planejamento, você DEVE:**
+
+1. Ler completamente todos os arquivos relevantes do projeto
+2. Entender o contexto e dependências existentes
+3. Verificar arquivos similares para manter padrão (ex: `.plan/cobertura-testes/`)
+
+### 2.2. Ordenação de Etapas
+
+**Ordenar etapas seguindo esta prioridade:**
+
+1. **Etapas sem dependências** → Primeiro
+2. **Etapas com menos dependências** → Seguem
+3. **Etapas dependentes** → Por último, respeitando ordem lógica
+
+**Identificar e documentar dependências explicitamente:**
+
+- Listar quais etapas anteriores são necessárias
+- Validar dependências antes de marcar etapa como "concluída"
+
+### 2.3. Desenvolvimento Incremental
+
+**Cada etapa deve ser:**
+
+- **Testável**: Ter critérios claros de validação
+- **Isolada**: Quando possível, funcionar independentemente
+- **Específica**: Focar em um único objetivo técnico
+- **Verificável**: Permitir validação objetiva de conclusão
+
+---
+
+## 3. Conteúdo do Arquivo `index.md`
+
+### 3.1. Estrutura Obrigatória
+
+```markdown
+# <Nome do Plano>
+
+## 📋 Visão Geral
+
+[Descrição breve do objetivo do plano]
+
+## 🎯 Estrutura de Etapas
+
+### Etapa 1: <Nome>
+
+**Arquivo**: `01-<nome>.md`
+**Status**: ⏳ Pendente | 🔄 Em desenvolvimento | ✅ Concluída
+**Dependências**: [lista de etapas ou "nenhuma"]
+
+[... outras etapas ...]
+
+## 📊 Progresso Geral
+
+[Status consolidado do plano]
+```
+
+### 3.2. Status das Etapas
+
+**Usar exatamente estes valores:**
+
+- `⏳ Pendente` - Ainda não iniciada
+- `🔄 Em desenvolvimento` - Atualmente sendo trabalhada
+- `✅ Concluída` - Finalizada e validada
+
+**Atualizar status:**
+
+- Marcar como "🔄 Em desenvolvimento" ao iniciar
+- Marcar como "✅ Concluída" após validação completa
+- Registrar data/hora da mudança quando relevante
+
+---
+
+## 4. Conteúdo de Cada Arquivo de Etapa
+
+### 4.1. Seções Obrigatórias
+
+**Todas as etapas DEVEM conter:**
+
+1. **Objetivo** - O que será implementado nesta etapa
+2. **Entregas** - Checklist específico e verificável
+3. **Arquivos Afetados** - Lista de arquivos/packages que serão modificados
+4. **Implementação** - Detalhes técnicos específicos (código, configurações)
+5. **Critérios de Validação** - Como verificar que a etapa está completa
+6. **Dependências** - Etapas anteriores necessárias
+
+### 4.2. Template Mínimo
+
+```markdown
+# Etapa X: <Nome da Etapa>
+
+## 📋 Objetivo
+
+[Descrição clara e específica do que será implementado]
+
+## 🎯 Entregas
+
+- [ ] Item de entrega 1 (específico e verificável)
+- [ ] Item de entrega 2
+- [ ] Item de entrega 3
+
+## 📦 Arquivos Afetados
+
+### Package/Arquivo 1
+
+- `caminho/para/arquivo.ts` - [descrição da mudança]
+- `caminho/para/arquivo2.ts` - [descrição da mudança]
+
+## 🔧 Implementação
+
+[Detalhes técnicos específicos com exemplos de código quando necessário]
+
+## ✅ Critérios de Validação
+
+- [ ] Teste específico passa
+- [ ] Funcionalidade X funciona conforme especificado
+- [ ] Nenhum teste existente quebrou
+
+## 🔗 Dependências
+
+- Etapa Y: [nome] - [por que é necessária]
+```
+
+### 4.3. Critérios de Qualidade do Planejamento
+
+**O planejamento deve ser:**
+
+- **Detalhado**: Incluir código específico quando relevante
+- **Sucinto**: Não incluir informações desnecessárias
+- **Objetivo**: Focar apenas no que será implementado
+- **Técnico**: Usar termos precisos e específicos do domínio
+
+**Evitar:**
+
+- ❌ Descrições vagas como "implementar funcionalidade X"
+- ❌ Planos genéricos sem especificidades
+- ❌ Múltiplos objetivos em uma única etapa
+
+**Preferir:**
+
+- ✅ "Criar função `validateHeroData()` em `src/utils/validation.ts`"
+- ✅ "Configurar Vitest em `packages/database/vitest.config.ts`"
+- ✅ Objetivos únicos e específicos por etapa
+
+---
+
+## 5. Checklist de Conclusão de Etapa
+
+### 5.1. Antes de Marcar como Concluída
+
+**Validar TODOS os itens:**
+
+- [ ] Todas as entregas da etapa foram implementadas
+- [ ] Testes unitários criados para funcionalidades implementadas (quando aplicável)
+- [ ] Testes relacionados passam (se aplicável)
+- [ ] Nenhum teste existente foi quebrado
+- [ ] Código segue padrões do projeto (clean code, validações)
+- [ ] Dependências de outras etapas foram verificadas
+- [ ] Commit realizado com mensagem descritiva
+
+### 5.2. Após Validação
+
+1. Marcar todas as entregas como concluídas `[x]`
+2. Atualizar status no `index.md` para `✅ Concluída`
+3. Registrar resumo da implementação (opcional mas recomendado)
+4. **Fazer commit das mudanças** com mensagem descritiva
+
+**Exemplo de atualização no index.md:**
+
+```markdown
+### Etapa 1: Configuração Base
+
+**Arquivo**: `01-configuracao-base.md`
+**Status**: ✅ Concluída
+**Dependências**: nenhuma
+**Concluída em**: 2024-12-19 - Vitest configurado em todos os packages
+```
+
+### 5.3. Commit ao Final do Desenvolvimento
+
+**Ao concluir TODAS as etapas de um plano:**
+
+1. Verificar que todas as etapas estão marcadas como `✅ Concluída`
+2. Executar todos os testes do projeto para garantir que nada quebrou
+3. Fazer commit final com mensagem descritiva do plano completo
+4. Mover o plano de `.plan/backlog/` para `.plan/done/` (se aplicável)
+
+**Formato sugerido de mensagem de commit:**
+
+```
+feat: [nome-do-plano] - descrição breve
+
+- Etapa 1: [resumo]
+- Etapa 2: [resumo]
+- Etapa 3: [resumo]
+```
+
+**Exemplo:**
+
+```
+feat: hero-search-feature - implementação completa
+
+- Etapa 1: Configuração base do Vitest
+- Etapa 2: Criação de fixtures e helpers
+- Etapa 3: Implementação da busca de heróis
+```
+
+---
+
+## 6. Pontos de Melhoria e Decisões Pendentes
+
+### 6.1. Quando Incluir
+
+Adicionar seção "Pontos de Melhoria" no final do arquivo quando:
+
+- Existem decisões arquiteturais que precisam ser tomadas
+- Há ambiguidades técnicas que podem afetar implementação
+- Múltiplas abordagens são possíveis e precisam de decisão
+
+### 6.2. Formato Padrão
+
+```markdown
+## ❓ Pontos de Melhoria
+
+### Pergunta 1: [Título da decisão]
+
+**Contexto**: [Explicação não técnica do problema]
+
+**Decisão**: Escolha uma opção:
+
+**A)** [Opção A]
+
+- ✅ Prós: [lista]
+- ❌ Contras: [lista]
+- 🎯 Quando usar: [situação]
+
+**B)** [Opção B]
+
+- ✅ Prós: [lista]
+- ❌ Contras: [lista]
+- 🎯 Quando usar: [situação]
+
+**Recomendação**: [Opção] - [Justificativa]
+```
+
+---
+
+## 7. Integração com TDD
+
+### 7.1. Planejamento de Testes
+
+**Cada etapa que implementa funcionalidade DEVE incluir:**
+
+1. **Estratégia de testes** - O que será testado
+2. **Testes unitários** - Para funções/componentes isolados
+3. **Testes de integração** - Para fluxos completos (quando aplicável)
+
+**Exemplo na seção de entregas:**
+
+```markdown
+## 🎯 Entregas
+
+- [ ] Implementar função `validateHeroData()`
+- [ ] Criar testes unitários para `validateHeroData()`
+- [ ] Validar cobertura de testes >= 80%
+```
+
+### 7.2. Validação de Testes
+
+**Antes de marcar etapa como concluída:**
+
+- Executar todos os testes relacionados
+- Verificar cobertura de código quando aplicável
+- Garantir que todos os testes passam
+
+---
+
+## 8. Referências e Exemplos
+
+### 8.1. Exemplos de Boas Práticas
+
+**Referência:**
+
+- `.plan/cobertura-testes/index.md` - Estrutura de plano completo
+- `.plan/cobertura-testes/01-configuracao-base.md` - Exemplo de etapa bem estruturada
+
+### 8.2. Padrões do Projeto
+
+**Alinhar com:**
+
+- Regras de desenvolvimento: `.cursor/rules/03-Desenvolvimento.mdc`
+- Regras de testes: `.cursor/rules/rules/04-testagem.mdc`
+- Regras universais: `.cursor/rules/00-universais.mdc`
+
+---
+
+## ✅ Checklist de Validação do Plano
+
+**Antes de iniciar implementação, validar:**
+
+- [ ] Pasta do plano criada com formato correto
+- [ ] `index.md` criado com todas as etapas listadas
+- [ ] Etapas ordenadas por dependências
+- [ ] Cada etapa tem arquivo separado
+- [ ] Cada arquivo de etapa contém todas as seções obrigatórias
+- [ ] Entregas são específicas e verificáveis
+- [ ] Dependências entre etapas estão documentadas
+- [ ] Testes estão planejados para cada etapa de funcionalidade
+
+**Ao finalizar o plano completo:**
+
+- [ ] Todas as etapas marcadas como concluídas
+- [ ] Testes unitários criados para todas as funcionalidades implementadas
+- [ ] Todos os testes do projeto passando
+- [ ] Commit final realizado com mensagem descritiva
+- [ ] Plano movido para `.plan/done/` (se aplicável)
+
+### Area "Pontos de melhoria:"
+
+- insira no fim do arquivo perguntas multipla escolha de coisas que nao ficaram claras e que podem afetar a implementação ou o funcionamento da aplicação

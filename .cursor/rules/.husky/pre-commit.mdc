@@ -1,0 +1,16 @@
+---
+globs: .husky/pre-commit
+alwaysApply: false
+---
+
+# .husky/pre-commit
+
+## Obrigatório
+
+- Executar `lint-staged`
+
+## Configuração
+
+```
+npx lint-staged
+```

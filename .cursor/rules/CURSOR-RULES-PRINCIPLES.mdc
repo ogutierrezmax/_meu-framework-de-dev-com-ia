@@ -1,0 +1,269 @@
+---
+globs: *.mdc
+alwaysApply: false
+---
+
+# Princípios para Escrever Regras do Cursor
+
+### 1. Clareza e Objetividade
+
+As regras devem ser escritas de forma clara, direta e fácil de entender, evitando ambiguidades.
+
+**Diretrizes**:
+
+- ✅ Escreva regras de forma clara e direta
+- ✅ Evite orientações vagas ou ambíguas
+- ✅ Escreva como documentação interna clara
+- ✅ Seja específico e objetivo
+- ✅ Evite diretrizes genéricas que possam ser interpretadas de múltiplas formas
+
+---
+
+### 2. Simplicidade e Foco
+
+Cada regra deve abordar um único aspecto ou comportamento, mantendo-se concisa e específica.
+
+**Diretrizes**:
+
+- ✅ Cada regra deve tratar de uma preocupação específica
+- ✅ Mantenha regras concisas e objetivas
+- ✅ Evite combinar múltiplas diretrizes não relacionadas em uma única regra
+- ✅ Siga o princípio: "faça apenas uma coisa e faça bem"
+- ✅ Uma regra = uma responsabilidade
+
+---
+
+### 3. Modularidade e Separação
+
+Divida regras complexas em partes menores, reutilizáveis e independentes.
+
+**Diretrizes**:
+
+- ✅ Divida regras grandes em partes menores
+- ✅ Crie arquivos separados para diferentes preocupações
+- ✅ Organize regras em arquivos distintos, agrupando por funcionalidade ou área
+- ✅ Mantenha regras independentes quando possível
+- ✅ Permita reutilização e combinação conforme necessário
+- ✅ Prefira múltiplas regras simples a uma regra complexa
+
+---
+
+### 4. Exemplos Concretos e Referências
+
+Inclua exemplos específicos ou arquivos de referência para ilustrar a aplicação das regras.
+
+**Diretrizes**:
+
+- ✅ Forneça exemplos práticos ou arquivos de referência
+- ✅ Mostre padrões corretos e incorretos quando relevante
+- ✅ Use exemplos do próprio projeto quando possível
+- ✅ Forneça contexto suficiente para compreensão
+- ✅ Exemplos ajudam a esclarecer a intenção e reduzem interpretações errôneas
+
+---
+
+### 5. Evitar Orientações Vagas
+
+Escreva regras como documentações internas claras, evitando diretrizes genéricas ou pouco específicas.
+
+**Diretrizes**:
+
+- ✅ Evite orientações vagas ou ambíguas
+- ✅ Seja específico e acionável
+- ✅ Não use diretrizes genéricas
+- ✅ Escreva como documentação interna profissional
+- ✅ Cada regra deve ser clara sobre o que fazer e como fazer
+
+---
+
+### 6. Alinhamento com Convenções do Projeto
+
+As regras devem estar alinhadas com as convenções e padrões estabelecidos no projeto.
+
+**Diretrizes**:
+
+- ✅ Alinhe regras com padrões de codificação do projeto
+- ✅ Considere requisitos específicos do framework/tecnologia utilizada
+- ✅ Documente o propósito e expectativas de cada regra
+- ✅ Garanta que regras são relevantes para o contexto específico
+- ✅ Mantenha uniformidade no código gerado
+
+---
+
+### 7. Tamanho Adequado das Regras
+
+Mantenha regras com menos de 500 linhas. Divida regras extensas em várias regras menores.
+
+**Diretrizes**:
+
+- ✅ Limite regras a menos de 500 linhas
+- ✅ Divida regras extensas em várias regras menores e componíveis
+- ✅ Priorize qualidade sobre quantidade
+- ✅ Regras longas dificultam a manutenção
+
+### 8. Revisão e Atualização Regular
+
+Revise e atualize regularmente as regras para garantir que permaneçam relevantes e eficazes.
+
+**Diretrizes**:
+
+- ✅ Monitore a eficácia das regras regularmente
+- ✅ Revise regras periodicamente
+- ✅ Atualize quando padrões mudarem
+- ✅ Remova regras obsoletas
+- ✅ Adapte regras conforme o projeto evolui
+- ✅ Documente mudanças significativas
+
+---
+
+### 9. Consistência e Padrões
+
+Mantenha um estilo uniforme em todas as regras, seguindo convenções estabelecidas.
+
+**Diretrizes**:
+
+- ✅ Mantenha estilo uniforme na escrita das regras
+- ✅ Padronize nomenclatura e formatação
+- ✅ Use estrutura coerente entre regras
+- ✅ Facilite a leitura e manutenção
+- ✅ Siga convenções estabelecidas no projeto
+
+---
+
+### 10. Organização por Domínio/Funcionalidade
+
+Organize regras em arquivos separados, categorizando por área de aplicação.
+
+**Diretrizes**:
+
+- ✅ Use nomes descritivos que indiquem o propósito da regra
+- ✅ Separe regras por domínio/funcionalidade
+- ✅ Exemplos de organização:
+  - `tests.mdc` - regras de testes
+  - `styling.mdc` - convenções de estilo
+  - `architecture.mdc` - padrões arquiteturais
+  - `api.mdc` - padrões de API
+- ✅ Evite nomes genéricos como `rules.mdc` ou `general.mdc`
+
+---
+
+## Resumo Executivo
+
+### Princípios Críticos (Sempre Aplicar)
+
+1. **Clareza e Objetividade** - Escreva de forma direta e sem ambiguidade
+2. **Simplicidade e Foco** - Uma regra = uma preocupação específica
+3. **Modularidade** - Divida regras complexas em componentes menores
+
+### Princípios Essenciais (Altamente Recomendados)
+
+4. **Exemplos Concretos** - Sempre forneça exemplos ou referências práticas
+5. **Evitar Vaguidão** - Seja específico e acionável
+6. **Alinhamento com Projeto** - Reflete padrões do projeto/framework
+
+### Princípios de Manutenção
+
+7. **Tamanho Adequado** - Limite a menos de 500 linhas por regra
+8. **Revisão Regular** - Monitore e atualize continuamente
+9. **Consistência** - Mantenha estilo uniforme
+
+### Princípios de Organização
+
+10. **Organização por Domínio** - Separe regras por funcionalidade/área
+
+---
+
+## Erros Comuns
+
+### ❌ Complexidade Excessiva
+
+- Tentar abordar muitos casos em uma única regra
+- Usar lógica condicional complexa
+- Criar regras difíceis de manter
+
+### ❌ Falta de Especificidade
+
+- Criar regras muito genéricas
+- Ignorar padrões específicos do projeto
+- Não considerar requisitos do framework
+
+### ❌ Falta de Exemplos
+
+- Não fornecer exemplos concretos
+- Usar orientações vagas
+- Não referenciar arquivos do projeto
+
+### ❌ Regras Muito Longas
+
+- Exceder 500 linhas sem dividir
+- Tentar cobrir tudo em um único arquivo
+- Dificultar manutenção e compreensão
+
+---
+
+## Estrutura Recomendada de Arquivo de Regra
+
+```yaml
+---
+alwaysApply: false
+globs: *.ts,*.tsx  # Opcional: padrões de caminho
+---
+```
+
+# Nome Descritivo da Regra
+
+## Propósito
+
+Breve descrição do que esta regra faz e por que existe.
+
+## Diretrizes
+
+- ✅ Exemplo de diretriz clara
+- ✅ Outra diretriz específica
+
+## Exemplos
+
+### ✅ Correto
+
+```typescript
+// Exemplo de código correto
+```
+
+### ❌ Incorreto
+
+```typescript
+// Exemplo de código incorreto
+```
+
+## Referências
+
+- Arquivos relacionados no projeto
+- Documentação relevante
+
+---
+
+## Fontes Consultadas
+
+### Fontes Principais
+
+- **docs.cursor.com** - Documentação oficial do Cursor IDE
+- **cursor.fan** - Guias e tutoriais da comunidade
+
+### Fontes Secundárias
+
+- Princípios de design de software (Filosofia Unix, boas práticas)
+- Padrões de documentação técnica
+
+---
+
+## Referências Oficiais
+
+- Documentação oficial: https://docs.cursor.com/context/rules
+- Guia da comunidade: https://cursor.fan/pt/tutorial/HowTo/using-cursor-rules-effectively/
+- Ferramentas de monitoramento: `/rules monitor`, `/rules stats`
+
+---
+
+**Última Atualização**: Compilado através de pesquisa ampliada em múltiplas fontes  
+**Metodologia**: Princípios validados por múltiplas fontes confiáveis
+

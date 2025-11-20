@@ -1,0 +1,54 @@
+---
+globs: package.json, *.config.*, **/package.json,
+alwaysApply: false
+---
+
+# Comandos Não-Interativos
+
+Para evitar necessidade de Ctrl+C ou 'q' durante execução de comandos:
+
+## Testes
+
+- **Vitest**: `--auto-exit` (já usado no projeto)
+- **Jest**: `--watchAll=false`, `--ci`, `--runInBand` (já usado no projeto)
+- **Playwright**: `--reporter=line`
+
+## Instalação e Execução
+
+- **npx**: `--yes` (aceita prompts automaticamente)
+- **Para comandos watch/dev**: executar em background com `&` no final
+- **Para scripts npm**: sempre incluir flags que tornem o comando não-interativo
+
+## Exemplos de Uso
+
+### Testes Unitários
+
+```bash
+npm run test -- --auto-exit
+```
+
+### Testes E2E
+
+```bash
+npx playwright test --reporter=line
+```
+
+### Instalação de Pacotes
+
+```bash
+npx --yes create-react-app my-app
+```
+
+### Comandos em Background
+
+```bash
+npm run dev &
+npm run build:watch &
+```
+
+## Regras de Aplicação
+
+- **SEMPRE** usar essas flags para comandos automatizados
+- **NUNCA** executar comandos que requerem interação manual
+- **SEMPRE** verificar se o comando está na pasta correta antes de executar
+

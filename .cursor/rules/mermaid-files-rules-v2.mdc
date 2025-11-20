@@ -1,0 +1,80 @@
+---
+globs: *.mmd
+alwaysApply: false
+---
+
+### Arquivos .mmd DEVEM conter APENAS código Mermaid:
+- PROIBIDO Documentação Markdown, explicações ou texto adicional exceto com %% (comentario) no inicio da linha
+
+## 📋 Regras de Sintaxe Mermaid
+
+### 1. Formatação de Nós:
+- Nós simples: `A[Texto]` ou `A(Texto)`
+- Nós de decisão: `A{Texto?}`
+- Nós de início/fim: `A([Texto])`
+- Subgráficos: `subgraph "Título" ... end`
+- NÃO usar aspas duplas dentro do texto dos nós.
+
+### 2. Comentários:
+- Linha única: `%% Comentário`
+- Bloco: `%% Comentário de bloco`
+- NÃO usar: `//` ou `/* */`
+
+### 3. Conexões:
+- Seta simples: `A --> B`
+- Seta com texto: `A -->|Texto| B`
+- Seta bidirecional: `A <--> B`
+- Seta com estilo: `A -.-> B`
+
+## 🎨 Regras de Estilo
+
+### 1. Cores e Classes:
+- Definir classes: `classDef className fill:#color,stroke:#color`
+- Aplicar classes: `class nodeName className`
+- Usar cores hexadecimais: `#e3f2fd`, `#1976d2`
+
+### 2. Organização Visual:
+- Subgráficos para agrupar funcionalidades relacionadas
+- Comentários para explicar seções complexas
+- Espaçamento consistente entre elementos
+
+## 🔍 Validação Obrigatória
+
+### Antes de Salvar:
+1. Verificar sintaxe: Executar no Mermaid Live Editor
+2. Validar estrutura: Confirmar que todos os nós estão conectados
+
+### Checklist de Validação:
+- [ ] Arquivo contém apenas código Mermaid
+- [ ] Sintaxe está correta (sem erros de parse)
+- [ ] Todos os nós estão conectados
+- [ ] Classes e estilos estão definidos
+- [ ] Subgráficos estão fechados corretamente
+
+## 📁 Organização de Arquivos
+
+
+## 🚫 Problemas Comuns a Evitar
+
+### 1. Sintaxe Incorreta:
+flowchart TD
+    A --> B
+    C --> D  %% Comentário incorreto
+
+### 2. Nós Desconectados:
+flowchart TD
+    A --> B
+    C --> D
+    E[Isolado]  %% Nó sem conexões
+
+##  Exemplo de Arquivo .mmd Correto
+flowchart TD
+    %% Estilos dos nós
+    classDef startPhase fill:#e3f2fd,stroke:#1976d2,color:#000,stroke-width:3px
+    
+    %% Fluxo principal
+    START([🚀 Início]) --> PROCESS[⚙️ Processo]
+    PROCESS --> END([🏁 Fim])
+    
+    %% Aplicar estilos
+    class START,END startPhase

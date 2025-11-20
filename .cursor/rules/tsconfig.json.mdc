@@ -1,0 +1,23 @@
+---
+globs: tsconfig.json
+alwaysApply: false
+---
+
+# tsconfig.json
+
+## Obrigatório
+
+- `"noImplicitAny": true` (mesmo com `strict: true`)
+- Incluir pastas de teste no `include`: `["src", "e2e"]`
+
+## Configuração
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "include": ["src", "e2e"]
+}
+```

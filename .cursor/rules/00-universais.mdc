@@ -1,0 +1,51 @@
+---
+description: Regras universais que se aplicam a todos os contextos de desenvolvimento
+alwaysApply: true
+---
+
+# Regras Universais de Desenvolvimento
+
+## Princípios de Código
+
+- todos os planejamentos devem ser criados em ".plan/"
+- All codes must follow clean code principles
+- Sempre usar validações
+- Não peça para o usuário fazer as modificações, faça você mesmo
+- Nomes de funções, variáveis, arquivos, descrições e afins apenas em inglês
+- Priorizar ESM ao invés de commonjs sempre que possível
+
+## Metodologia de Desenvolvimento
+
+- Ler todos os documentos ou arquivos relevantes completamente antes de implementar
+- Focar em desenvolvimento por etapas simples, bem definidas e testáveis
+- Marcar etapas como "em desenvolvimento" quando iniciadas
+- Marcar etapas como "concluída" ao finalizar e registrar resumo
+- Registrar histórico completo de mudanças de status com data/hora e resumo
+- Desenvolver apenas uma etapa por vez até 100% de conclusão
+
+## Terminal e Execução
+
+- O usuário prefere que o assistente sempre verifique o diretório de trabalho atual antes de executar comandos de terminal
+- O usuário prefere que o assistente leia ou exiba o conteúdo completo dos comandos de terminal ao executá-los
+- Sempre rodar os comandos que achar necessários em vez de pedir para o usuário executar
+- O usuário está sempre rodando o projeto com 'npm run dev' e com o "build:watch" no modo watch, então não precisa rodar esses comandos
+
+## Testes e Qualidade
+
+- All features must use Test Driven Development
+- Always run tests before finalizing
+- Sempre COBRIR TODAS AS FUNCIONALIDADES DO FRONTEND com teste end to end
+- Ao criar testes use o mínimo de mocks possível
+- TER COMO REQUISITO DE SUCESSO TODOS OS TESTES PASSANDO
+- O usuário prefere confiar em testes automatizados para prever e capturar bugs
+- O usuário QUER que testes que falhem sejam corrigidos PREFERENCIALMENTE no código, e não ajustando tolerâncias dos testes
+
+## Comandos Não-Interativos
+
+Ver arquivo `comandos.mdc` para comandos não-interativos consolidados.
+
+## Gerenciamento de Regras
+
+- sempre que o usuário mencionar 'regras' ele se refere aos arquivos "./.cursor/rules/\*.mdc"
+- todas as regras 'core' do metodo devem estar enumeradas e todas as regras especificas do projeto não devem
+

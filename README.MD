@@ -1,0 +1,1 @@
+# Framework de desenvolvimento com IA baseado no meu aprendizado

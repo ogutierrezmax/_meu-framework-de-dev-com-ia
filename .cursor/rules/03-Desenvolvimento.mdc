@@ -1,0 +1,22 @@
+---
+globs: **/src/**/*.ts, **/src/**/*.tsx, .plan/**/*.md
+alwaysApply: false
+---
+
+# Regras de Desenvolvimento e Planejamento
+
+## Metodologia de Desenvolvimento
+
+<!-- Regras de sincronização e histórico movidas para 00-universais.mdc e 02-Planejamento.mdc -->
+
+## Estrutura do Projeto
+
+- Usar TypeScript e pnpm como linguagem e gerenciador de pacotes
+
+## Gestão de Etapas
+
+- Validar cada etapa antes de prosseguir
+- Desenvolvimento estruturado e planejado
+<!-- Regras de etapas movidas para 00-universais.mdc e 02-Planejamento.mdc -->
+- **ANTES de implementar qualquer feature**, verificar se ela precisa ser integrada ao build system existente
+

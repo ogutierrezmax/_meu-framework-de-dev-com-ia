@@ -1,0 +1,20 @@
+---
+globs: .lintstagedrc.json
+alwaysApply: false
+---
+
+# .lintstagedrc.json
+
+## Obrigatório
+
+- Usar `--max-warnings 0` no comando do ESLint
+
+## Configuração
+
+```json
+{
+  "*.ts": [
+    "eslint --fix --max-warnings 0"
+  ]
+}
+```

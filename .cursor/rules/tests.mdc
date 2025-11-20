@@ -1,0 +1,158 @@
+---
+globs: *.test.ts,*.spec.ts,**/__tests__/**/*.ts
+alwaysApply: false
+---
+
+# Regras de Testes
+
+## Filosofia de Testes
+
+- Priorize testar o funcionamento real sempre que possível, evitando ao máximo o uso de mocks
+- Use mocks apenas quando necessário: APIs externas instáveis, operações custosas (I/O, banco), ou para isolar dependências problemáticas
+- Prefira fixtures reais, dados de teste consistentes e ambientes de teste controlados
+
+## Estrutura e Organização
+
+### Nomenclatura
+
+- Arquivos de teste: `*.test.ts` ou `*.spec.ts`
+- Organize testes em diretórios `__tests__/` ou coloque junto ao código
+- Separe testes unitários (`unit/`) de testes de integração (`integration/`)
+- Nomeie fixtures em `__tests__/fixtures/` ou `__tests__/__fixtures__/`
+
+### Estrutura de Testes (AAA Pattern)
+
+```typescript
+describe('ComponentName', () => {
+	describe('methodName', () => {
+		it('should handle success case', () => {
+			// Arrange - preparar dados e contexto
+			const input = validInput;
+
+			// Act - executar a ação
+			const result = methodName(input);
+
+			// Assert - verificar resultados
+			expect(result).toBe(expectedOutput);
+		});
+	});
+});
+```
+
+## Qualidade e Cobertura
+
+### Cobertura Mínima
+
+- **Statements**: 80%+
+- **Functions**: 80%+
+- **Branches**: 75%+
+- **Lines**: 80%+
+
+### Casos de Teste Obrigatórios
+
+Para cada função/método público, inclua:
+
+1. **Caso de sucesso** - comportamento esperado normal
+2. **Casos de borda** - valores limites, arrays vazios, null/undefined quando aplicável
+3. **Casos de erro** - entradas inválidas, exceções esperadas
+4. **Casos de integração** - quando múltiplos componentes trabalham juntos
+
+## Quando Usar Mocks vs Testes Reais
+
+### Use Testes Reais Quando:
+
+- ✅ Testando lógica de negócio pura
+- ✅ Testando funções utilitárias e transformações de dados
+- ✅ Testando validações e schemas
+- ✅ Temos controle sobre dependências (banco de teste, APIs mockáveis localmente)
+- ✅ O teste é rápido e determinístico
+
+### Use Mocks Apenas Quando:
+
+- ❌ APIs externas instáveis ou com rate limiting
+- ❌ Operações de I/O lentas (arquivos grandes, redes)
+- ❌ Testes que precisam simular falhas específicas
+- ❌ Isolar dependências problemáticas para testes unitários
+
+## Testes de Integração
+
+### Banco de Dados
+
+- Use banco de dados de teste real quando possível (SQLite in-memory, Docker)
+- Limpe dados entre testes (`beforeEach`/`afterEach`)
+- Use transações que são revertidas após cada teste
+- Evite mocks de Prisma/ORM quando testando queries complexas
+
+### APIs Externas
+
+- Para testes de integração: considere usar APIs reais em ambiente de staging/test
+- Para testes unitários: use mocks ou fixtures
+- Documente claramente quais testes requerem conexão externa
+
+## Boas Práticas
+
+### Setup e Cleanup
+
+```typescript
+beforeEach(() => {
+	// Setup: criar instâncias, resetar estado
+});
+
+afterEach(async () => {
+	// Cleanup: limpar recursos, remover dados de teste
+	await cleanupTestData();
+});
+```
+
+### Assertions
+
+- Use assertions específicas (`toBe`, `toEqual`, `toContain`) ao invés de `toBeTruthy` genérico
+- Inclua mensagens descritivas em assertions: `expect(result).toBe(expected, 'deve retornar o ID correto')`
+- Teste múltiplas propriedades quando necessário, não apenas uma
+
+### Fixtures e Dados de Teste
+
+- Mantenha fixtures reais em `__tests__/fixtures/`
+- Reutilize dados de teste através de helpers/factories
+- Garanta que fixtures representem dados válidos e realistas
+
+### Performance
+
+- Testes devem executar rapidamente (< 1s para unitários, < 10s para integração)
+- Use `test.concurrent` do Vitest quando testes são independentes
+- Configure timeouts apropriados (`testTimeout` no vitest.config)
+
+### Debugging
+
+- Use `console.log` ou `debugger` durante desenvolvimento, mas remova antes de commitar
+- Use `describe.only` ou `it.only` temporariamente para focar em um teste específico
+- Remova `.only` antes de commitar
+
+## Configuração Vitest
+
+- Sempre execute testes não-interativamente: usar flags `--run` ou configurar `watch: false`
+- Use `globals: true` para não precisar importar `describe`, `it`, `expect`
+- Configure reporters apropriados: `verbose` para desenvolvimento, `dot` ou `json` para CI
+
+## Testes E2E (se aplicável)
+
+- Separe testes E2E em diretório específico
+- Use ferramentas apropriadas (Playwright, Puppeteer) quando necessário
+- Mantenha testes E2E mínimos e focados em fluxos críticos
+
+## Anti-patterns a Evitar
+
+- ❌ Testes que dependem de outros testes (ordem de execução)
+- ❌ Testes que não limpam estado (poluição entre testes)
+- ❌ Mocks excessivos (testando mocks ao invés de código real)
+- ❌ Testes muito genéricos ou vagos
+- ❌ Ignorar testes quebrados com `.skip` sem razão documentada
+- ❌ Hardcoded valores quando fixtures seriam melhores
+
+## Comandos Úteis
+
+- `npm test` - executar todos os testes
+- `npm run test:watch` - modo watch
+- `npm run test:coverage` - gerar relatório de cobertura
+- Executar teste específico: `vitest path/to/test.test.ts`
+
